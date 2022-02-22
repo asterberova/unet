@@ -17,6 +17,6 @@ model = unet()
 model_checkpoint = ModelCheckpoint('/data/s2732815/unet/data/unet_membrane.hdf5', monitor='loss',verbose=1, save_best_only=True)
 model.fit_generator(myGene,steps_per_epoch=300,epochs=1,callbacks=[model_checkpoint])
 
-testGene = testGenerator("data/s2732815/unet/data/test")
+testGene = testGenerator(test_path="data/s2732815/unet/data/test", num_image=125)
 results = model.predict_generator(testGene,30,verbose=1)
 saveResult("data/s2732815/unet/data/test",results)
